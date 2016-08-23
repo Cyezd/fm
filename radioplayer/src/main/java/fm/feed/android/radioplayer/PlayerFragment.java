@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.animation.GlideAnimation;
@@ -144,6 +145,14 @@ public class PlayerFragment extends Fragment {
         mTuningView = rootView.findViewById(R.id.tuningView);
         mPlayerControlsView = rootView.findViewById(R.id.playerControlsView);
         mBackgroundImageView = (ImageView) rootView.findViewById(R.id.backgroundImageView);
+
+        // station description
+        TextView description = (TextView) rootView.findViewById(R.id.description);
+        String dt = mStation.getOption("description").toString();
+        if (dt == null) {
+            dt = "Tune in!";
+        }
+        description.setText(dt);
 
         // 'powered by feed.fm' link
         Button poweredByText = (Button) rootView.findViewById(R.id.powered_by_playing);
