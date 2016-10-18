@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import fm.feed.android.playersdk.Player;
 import fm.feed.android.playersdk.PlayerAvailabilityListener;
 
+import fm.feed.android.radioplayer.tabbed.PlayerActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
@@ -44,7 +46,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 // start the player and show _all_ stations not marked as hidden
-                startActivity(new Intent(MainActivity.this, PlayerActivity.class));
+                Intent ai = new Intent(MainActivity.this, PlayerActivity.class);
+                ai.putExtra(PlayerActivity.EXTRA_PARENT_ACTIVITY, new Intent(MainActivity.this, MainActivity.class));
+
+                startActivity(ai);
             }
         });
 
@@ -60,6 +65,8 @@ public class MainActivity extends AppCompatActivity {
                  stations.add("Hidden Station");
                  ai.putStringArrayListExtra(PlayerActivity.EXTRA_UNHIDE_STATION_LIST, stations);
                  ai.putExtra(PlayerActivity.EXTRA_DEFAULT_STATION, "Hidden Station");
+
+                 ai.putExtra(PlayerActivity.EXTRA_PARENT_ACTIVITY, new Intent(MainActivity.this, MainActivity.class));
 
                  startActivity(ai);
              }
@@ -79,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
                  ArrayList<String> stations = new ArrayList<String>();
                  stations.add("Hidden Station");
                  ai.putStringArrayListExtra(PlayerActivity.EXTRA_VISIBLE_STATION_LIST, stations);
+
+                 ai.putExtra(PlayerActivity.EXTRA_PARENT_ACTIVITY, new Intent(MainActivity.this, MainActivity.class));
 
                  startActivity(ai);
              }

@@ -12,11 +12,6 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
 
-        //  ** note ** - if your app is just being started to 
-        //     respond to a push notification, and not actually
-        //     display an activity that could lead to music, 
-        //     you might want to skip this.
-  
         // initialize player
         Player.setTokens(this, "sdkdemo", "sdkdemo");
     }
