@@ -94,24 +94,24 @@ public class MyActivity extends AppCompatActivity {
     // this should be done before calling findViewById below
     setContenView(/* ... */);
 
-		// make buttons visible if radio is available
-		Player.getInstance().onPlayerAvailability(new PlayerAvailabilityListener() {
-				@Override
-				public void onAvailable() {
-        		// In this method, make all your hidden buttons that access
-            // radio visible.
-						findViewById(R.id.playerButton).setVisibility(View.VISIBLE);
-				}
+    // make buttons visible if radio is available
+    Player.getInstance().onPlayerAvailability(new PlayerAvailabilityListener() {
+       @Override
+       public void onAvailable() {
+         // In this method, make all your hidden buttons that access
+         // radio visible.
+         findViewById(R.id.playerButton).setVisibility(View.VISIBLE);
+       }
 
-				@Override
-				public void onUnavailable() {
-            // You can leave this empty if, by default, you do not offer
-            // access to music in your UI. 
+       @Override
+       public void onUnavailable() {
+         // You can leave this empty if, by default, you do not offer
+         // access to music in your UI. 
 
-            // If you really want to disappoint your user, you could run the following:
-						Toast.makeText(MyActivity.this, "Sorry, music is not available to you right now", Toast.LENGTH_LONG).show();
-				}
-		});
+         // If you really want to disappoint your user, you could run the following:
+         Toast.makeText(MyActivity.this, "Sorry, music is not available to you right now", Toast.LENGTH_LONG).show();
+        }
+    });
 
     // ...
   }
