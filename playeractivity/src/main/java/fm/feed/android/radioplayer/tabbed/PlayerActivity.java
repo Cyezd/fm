@@ -58,6 +58,10 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
         setContentView(R.layout.activity_player);
 
+        if (getSupportActionBar() != null) {
+            Log.e(TAG, "Please assign a theme to this activity with no action bar.");
+        }
+
         Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
 
