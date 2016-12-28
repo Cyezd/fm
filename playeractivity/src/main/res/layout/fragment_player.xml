@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     >
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:id="@+id/backgroundImageView"
         android:scaleType="centerCrop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         />
 
     <!-- android:src="@drawable/aeo_background_0" -->
@@ -19,9 +21,14 @@
         android:id="@+id/metadataFrame"
         android:layout_width="match_parent"
         android:layout_height="204dp"
-        android:layout_gravity="bottom"
-        android:background="#f3ffffff"
         >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/feedfm_playcontrols_background"
+            android:scaleType="centerCrop"
+            />
 
         <RelativeLayout
             android:id="@+id/tuneInView"
@@ -45,7 +52,6 @@
                 android:layout_alignParentTop="true"
                 android:text="Kick it!"
                 android:textSize="17dp"
-                android:textColor="#ff000000"
                 />
 
             <fm.feed.android.playersdk.view.StationButton
@@ -150,7 +156,6 @@
                     android:fontFamily="sans-serif"
                     android:gravity="start"
                     android:textSize="10dp"
-                    android:textColor="#ff000000"
                     />
 
                 <fm.feed.android.playersdk.view.RemainingTimeTextView
@@ -161,7 +166,6 @@
                     android:fontFamily="sans-serif"
                     android:gravity="end"
                     android:textSize="10dp"
-                    android:textColor="#ff000000"
                     />
 
             </LinearLayout>
@@ -176,7 +180,6 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="track name"
-                android:textColor="#ff000000"
                 android:textSize="16dp"
                 app:format="%TRACK"
                 />
@@ -191,7 +194,6 @@
                 android:fontFamily="sans-serif"
                 android:gravity="center"
                 android:text="artist name"
-                android:textColor="#ff000000"
                 android:textSize="12dp"
                 app:format="%ARTIST | %ALBUM"
                 />
@@ -277,7 +279,6 @@
                 android:fontFamily="sans-serif"
                 android:text="POWERED BY FEED.FM"
                 android:textSize="10dp"
-                android:textColor="#ff000000"
                 style="?android:attr/borderlessButtonStyle"
                 />
 
@@ -285,4 +286,4 @@
 
     </FrameLayout>
 
-</FrameLayout>
+</LinearLayout>

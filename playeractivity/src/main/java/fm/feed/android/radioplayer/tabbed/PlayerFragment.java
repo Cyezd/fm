@@ -5,19 +5,24 @@ package fm.feed.android.radioplayer.tabbed;
  * Copyright Feed Media, 2016
  */
 
+import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -147,8 +152,11 @@ public class PlayerFragment extends Fragment {
 
         // station description
         TextView description = (TextView) rootView.findViewById(R.id.description);
-        String dt = mStation.getOption("description").toString();
-        if (dt == null) {
+        Object desc = mStation.getOption("description");
+        String dt;
+        if (desc != null) {
+            dt = (String) desc;
+        } else {
             dt = "Tune in!";
         }
         description.setText(dt);
@@ -165,13 +173,11 @@ public class PlayerFragment extends Fragment {
         mPlayer.registerNavListener(mNavListener);
         mPlayer.registerPlayerListener(mPlayerListener);
 
-        // clicking on this button will now start playback
-        // in this station
+        // watch start button to distinguish between pre-buffering
+        // and buffering
         StationButton sb = (StationButton) rootView.findViewById(R.id.startButton);
         sb.setStationName(mStation.getName());
 
-        // watch start button to distinguish between pre-buffering
-        // and buffering
         PlayerState state = mPlayer.getState();
         mUserInteraction = (state != PlayerState.READY) && (state != PlayerState.TUNING) && (state != PlayerState.TUNED);
         sb.setOnClickListener(onClickStationButton);
@@ -181,7 +187,30 @@ public class PlayerFragment extends Fragment {
         // show controls or 'tune in!' text
         displayMetadataGroupOrNot();
 
+        tintButtons((ViewGroup) rootView);
+
         return rootView;
+    }
+
+    private static void tintButtons(ViewGroup parent) {
+        int childCount = parent.getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View child = parent.getChildAt(i);
+            if (child instanceof ViewGroup) {
+                tintButtons((ViewGroup) child);
+
+            } else if (child instanceof ImageButton) {
+                tintButton((ImageButton) child);
+            }
+        }
+    }
+
+    public static void tintButton(@NonNull ImageButton button) {
+        ColorStateList colours = button.getResources()
+                .getColorStateList(R.color.marathonAccent);
+        Drawable d = DrawableCompat.wrap(button.getDrawable());
+        DrawableCompat.setTintList(d, colours);
+        button.setImageDrawable(d);
     }
 
     /**
@@ -293,39 +322,29 @@ public class PlayerFragment extends Fragment {
         Station station = mPlayer.getStation();
         PlayerState state = mPlayer.getState();
 
-        Log.i(TAG, "determining metadata display, state is " + state.name());
-
         if (!mUserInteraction
                 || (station == null)
                 || (state == PlayerState.READY)
                 || (state == PlayerState.TUNED)
                 || (state == PlayerState.UNAVAILABLE)) {
-            Log.i(TAG, "showing tune in text, state is " + state);
-
             // display 'tune in! text
             mTuneInView.setVisibility(View.VISIBLE);
             mTuningView.setVisibility(View.INVISIBLE);
             mPlayerControlsView.setVisibility(View.INVISIBLE);
 
         } else if (!station.getId().equals(mStation.getId())) {
-            Log.i(TAG, "showing tune in text, since station does not match");
-
             // display controls for non-tuned in stations
             mTuneInView.setVisibility(View.VISIBLE);
             mTuningView.setVisibility(View.INVISIBLE);
             mPlayerControlsView.setVisibility(View.INVISIBLE);
 
         } else if (state == PlayerState.TUNING) {
-            Log.i(TAG,"showing 'tuning...' text since we're tuning");
-
             // show tuning text if that's what we're doing
             mTuneInView.setVisibility(View.INVISIBLE);
             mTuningView.setVisibility(View.VISIBLE);
             mPlayerControlsView.setVisibility(View.INVISIBLE);
 
         } else {
-            Log.i(TAG, "showing controls");
-
             // display controls
             mTuneInView.setVisibility(View.INVISIBLE);
             mTuningView.setVisibility(View.INVISIBLE);

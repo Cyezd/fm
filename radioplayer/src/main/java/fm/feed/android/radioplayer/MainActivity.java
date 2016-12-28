@@ -53,46 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button openHidden = (Button) findViewById(R.id.openHiddenButton);
-
-        openHidden.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
-                 // start the player and show non-hidden stations plus the station named "Promo"
-                 Intent ai = new Intent(MainActivity.this, PlayerActivity.class);
-
-                 ArrayList<String> stations = new ArrayList<String>();
-                 stations.add("Hidden Station");
-                 ai.putStringArrayListExtra(PlayerActivity.EXTRA_UNHIDE_STATION_LIST, stations);
-                 ai.putExtra(PlayerActivity.EXTRA_DEFAULT_STATION, "Hidden Station");
-
-                 ai.putExtra(PlayerActivity.EXTRA_PARENT_ACTIVITY, new Intent(MainActivity.this, MainActivity.class));
-
-                 startActivity(ai);
-             }
-        });
-
-
-        // if we want, we can just pull up a specific list of stations to display
-
-        Button openJustHidden = (Button) findViewById(R.id.openJustHiddenButton);
-
-        openJustHidden.setOnClickListener(new View.OnClickListener() {
-                                         @Override
-                                         public void onClick(View v) {
-                 // start the player and show only the station named "Promo"
-                 Intent ai = new Intent(MainActivity.this, PlayerActivity.class);
-
-                 ArrayList<String> stations = new ArrayList<String>();
-                 stations.add("Hidden Station");
-                 ai.putStringArrayListExtra(PlayerActivity.EXTRA_VISIBLE_STATION_LIST, stations);
-
-                 ai.putExtra(PlayerActivity.EXTRA_PARENT_ACTIVITY, new Intent(MainActivity.this, MainActivity.class));
-
-                 startActivity(ai);
-             }
-         });
-
         // make buttons visible if radio is available
         Player.getInstance().onPlayerAvailability(new PlayerAvailabilityListener() {
             @Override

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Android-RadioPlayer.iml" filepath="$PROJECT_DIR$/Android-RadioPlayer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LA-Marathon-Android.iml" filepath="$PROJECT_DIR$/LA-Marathon-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/playeractivity/playeractivity.iml" filepath="$PROJECT_DIR$/playeractivity/playeractivity.iml" />
       <module fileurl="file://$PROJECT_DIR$/radioplayer/radioplayer.iml" filepath="$PROJECT_DIR$/radioplayer/radioplayer.iml" />
     </modules>

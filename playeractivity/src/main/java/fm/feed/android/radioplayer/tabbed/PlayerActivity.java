@@ -19,6 +19,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
@@ -130,7 +131,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
             mPlayer.setStation(visibleStations[selectedTabIndex].getName());
             mPlayer.tune();
         }
-
     }
 
     @Nullable
@@ -213,9 +213,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
             for (Station station : mPlayer.getStationList()) {
                 Object hidden = station.getOption("hidden");
 
-                Log.i(TAG, "debugging station " + station.getName() + ", " + station.getOption("mobile_app_backgrounds"));
-
-
                 if ((hidden == null) ||
                         ((hidden instanceof Boolean) && (!(Boolean) hidden)) ||
                         unhide.contains(station.getName())) {
@@ -295,8 +292,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
     @Override
     public void onStationStartedPlayback(Station station) {
-        Log.d(TAG, "updating notification_small intent to point to " + station.getName());
-
         Intent ai = new Intent(getIntent());
         ai.putExtra(EXTRA_DEFAULT_STATION, station.getName());
 
