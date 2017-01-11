@@ -133,7 +133,6 @@ public class PlayerFragment extends Fragment {
             mStation = mPlayer.getStationWithName(stationName);
 
             if (mStation == null) {
-                Log.w(TAG, "PlayerFragment created with station name '" + stationName + "', but no such station exists");
                 // default to active station to keep this boat floatin'
                 mStation = mPlayer.getStation();
             }
@@ -252,7 +251,11 @@ public class PlayerFragment extends Fragment {
         }
 
         @Override
-        public void onPlaybackStateChanged(PlayerState playerState) {
+        public void onPlaybackStateChanged(PlayerState state) {
+            if ((state != PlayerState.READY) && (state != PlayerState.TUNING) && (state != PlayerState.TUNED)) {
+                mUserInteraction = true;
+            }
+
             displayMetadataGroupOrNot();
         }
 
@@ -327,6 +330,7 @@ public class PlayerFragment extends Fragment {
                 || (state == PlayerState.READY)
                 || (state == PlayerState.TUNED)
                 || (state == PlayerState.UNAVAILABLE)) {
+
             // display 'tune in! text
             mTuneInView.setVisibility(View.VISIBLE);
             mTuningView.setVisibility(View.INVISIBLE);
