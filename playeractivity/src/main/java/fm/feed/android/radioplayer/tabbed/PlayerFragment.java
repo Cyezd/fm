@@ -147,11 +147,11 @@ public class PlayerFragment extends Fragment {
 
         // station description
         TextView description = (TextView) rootView.findViewById(R.id.description);
-        String dt = mStation.getOption("description").toString();
+        Object dt = mStation.getOption("description");
         if (dt == null) {
             dt = "Tune in!";
         }
-        description.setText(dt);
+        description.setText((String) dt);
 
         // 'powered by feed.fm' link
         Button poweredByText = (Button) rootView.findViewById(R.id.powered_by_playing);
@@ -160,10 +160,6 @@ public class PlayerFragment extends Fragment {
         poweredByText.setOnClickListener(onClickPoweredByText);
         poweredByText = (Button) rootView.findViewById(R.id.powered_by_tune_in);
         poweredByText.setOnClickListener(onClickPoweredByText);
-
-        // update the view when we switch stations
-        mPlayer.registerNavListener(mNavListener);
-        mPlayer.registerPlayerListener(mPlayerListener);
 
         // clicking on this button will now start playback
         // in this station
@@ -177,9 +173,6 @@ public class PlayerFragment extends Fragment {
         sb.setOnClickListener(onClickStationButton);
 
         assignBackground();
-
-        // show controls or 'tune in!' text
-        displayMetadataGroupOrNot();
 
         return rootView;
     }
@@ -275,6 +268,17 @@ public class PlayerFragment extends Fragment {
             // don't care
         }
     };
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        // update the view when we switch stations
+        mPlayer.registerNavListener(mNavListener);
+        mPlayer.registerPlayerListener(mPlayerListener);
+
+        displayMetadataGroupOrNot();
+    }
 
     @Override
     public void onPause() {
