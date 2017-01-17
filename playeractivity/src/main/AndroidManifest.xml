@@ -7,12 +7,10 @@
         <activity
             android:name=".PlayerActivity"
             android:label="Radio"
+            android:parentActivityName="fm.feed.android.radioplayer.MainActivity"
             >
-            <!-- android:parentActivityName=".MainActivity" -->
 
         </activity>
-
-
 
     </application>
 

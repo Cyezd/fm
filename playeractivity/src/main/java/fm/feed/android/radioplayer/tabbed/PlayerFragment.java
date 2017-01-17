@@ -168,10 +168,6 @@ public class PlayerFragment extends Fragment {
         poweredByText = (Button) rootView.findViewById(R.id.powered_by_tune_in);
         poweredByText.setOnClickListener(onClickPoweredByText);
 
-        // update the view when we switch stations
-        mPlayer.registerNavListener(mNavListener);
-        mPlayer.registerPlayerListener(mPlayerListener);
-
         // watch start button to distinguish between pre-buffering
         // and buffering
         StationButton sb = (StationButton) rootView.findViewById(R.id.startButton);
@@ -186,30 +182,9 @@ public class PlayerFragment extends Fragment {
         // show controls or 'tune in!' text
         displayMetadataGroupOrNot();
 
-        tintButtons((ViewGroup) rootView);
+        //tintButtons((ViewGroup) rootView);
 
         return rootView;
-    }
-
-    private static void tintButtons(ViewGroup parent) {
-        int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View child = parent.getChildAt(i);
-            if (child instanceof ViewGroup) {
-                tintButtons((ViewGroup) child);
-
-            } else if (child instanceof ImageButton) {
-                tintButton((ImageButton) child);
-            }
-        }
-    }
-
-    public static void tintButton(@NonNull ImageButton button) {
-        ColorStateList colours = button.getResources()
-                .getColorStateList(R.color.marathonAccent);
-        Drawable d = DrawableCompat.wrap(button.getDrawable());
-        DrawableCompat.setTintList(d, colours);
-        button.setImageDrawable(d);
     }
 
     /**
@@ -223,6 +198,8 @@ public class PlayerFragment extends Fragment {
             // if the player is TUNING but the user hasn't interacted with
             // anything yet, then assume we're pre-loading stuff in the background
             // and don't show the spinner.
+            Log.d(TAG, "User clicked on station button");
+
             mUserInteraction = true;
 
             if (mPlayerFragmentEventListener != null) {
@@ -252,6 +229,8 @@ public class PlayerFragment extends Fragment {
 
         @Override
         public void onPlaybackStateChanged(PlayerState state) {
+            Log.d(TAG, "playback state changed to " + state + ". mUserInteraction is " + mUserInteraction);
+
             if ((state != PlayerState.READY) && (state != PlayerState.TUNING) && (state != PlayerState.TUNED)) {
                 mUserInteraction = true;
             }
@@ -309,12 +288,24 @@ public class PlayerFragment extends Fragment {
     };
 
     @Override
+    public void onResume() {
+        super.onResume();
+
+        // update the view when we switch stations
+        mPlayer.registerNavListener(mNavListener);
+        mPlayer.registerPlayerListener(mPlayerListener);
+
+        displayMetadataGroupOrNot();
+    }
+
+    @Override
     public void onPause() {
         super.onPause();
 
         mPlayer.unregisterNavListener(mNavListener);
         mPlayer.unregisterPlayerListener(mPlayerListener);
     }
+
 
     /**
      * Determine which of the tuneInView, tuningView, or playerControlsView
@@ -324,6 +315,9 @@ public class PlayerFragment extends Fragment {
     private void displayMetadataGroupOrNot() {
         Station station = mPlayer.getStation();
         PlayerState state = mPlayer.getState();
+
+        Log.d(TAG, "updating metadata display for " + ((mStation != null) ? mStation.getName() : "undefined station") +
+            ". current station is " + ((station != null) ? station.getName() : "not set") + ", mUserInteraction is " + mUserInteraction + " and state is " + state);
 
         if (!mUserInteraction
                 || (station == null)
