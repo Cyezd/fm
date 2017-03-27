@@ -15,19 +15,20 @@ default image included with this code.
 Check out our [iOS version](https://github.com/feedfm/iOS-RadioPlayer) as well!
 
 # Android-RadioPlayer Demo Setup from scratch
-To setup the **Andriod-RadioPlayer** demo from scratch using Android Studio, follow the steps below. The demo is mainly to help familiarize new developers with the player and allow testing and interaction with the base UI components. To view instructions on integration into an existing application, scroll down to **Integrate the Android-RadioPlayer into an existing application**.
+To setup the **Andriod-RadioPlayer** demo (from with in the project, `radioplayer`) from scratch using Android Studio, follow the steps below. The demo is mainly to help familiarize new developers with the player and allow testing and interaction with the base UI components. To view instructions on integration into an existing application, scroll down to **Integrate the Android-RadioPlayer into an existing application**.
 
 ## Download Android Studio
 If you have not already, [download Andriod Studio](https://developer.android.com/studio/index.html) and followup the setup instructions [here](https://developer.android.com/studio/install.html).
 
 ## Clone the Andriod-RadioPlayer repository
-To obtain the Andriod-RadioPlayer demo code, clone the Github repository:
+To obtain the Andriod-RadioPlayer code, clone the Github repository:
 ````
 git clone https://github.com/feedfm/Android-RadioPlayer.git
 ````
+Or you may download the latest release here: [https://github.com/feedfm/Android-RadioPlayer/archive/master.zip](https://github.com/feedfm/Android-RadioPlayer/archive/master.zip)
 
 ## Import the Andriod-RadioPlayer project into Android Studio
-In order to interact with the Andriod-RadioPlayer in Android Studio, you must import the project.
+In order to interact with the Andriod-RadioPlayer `radioplayer` demo in Android Studio, you must import the project.
 
 ### To import the project
 
@@ -35,31 +36,32 @@ In order to interact with the Andriod-RadioPlayer in Android Studio, you must im
 2. After selecting **Import Project**, use the browse menu to navigate to the location of the cloned **Android-RadioPlayer** project. Select the root directory of the project `Andriod-RadioPlayer`.
 3. Click OK. **NOTE:** You may be asked what type of project you are importing, select **Import project from external model** and select the **Gradle** option.
 4. It is possible you may receive messages about missing plugin dependencies through out the import process. If this happens, click the installation link to resolve the missing dependency. You may need to install several updates before the process is complete.
-5. After the import has begun, you will notice a `Gradle Syc` process start. The progress of this process will be displayed in the bottom status bar of Android Studio.
-6. Be sure to let the `Grade Syc` process complete before moving on. You will know the process is complete when you see a message that says "Gradle build finished in X seconds"
+5. After the import has begun, you will notice a `Gradle Syc` process will begin. The progress of this process will be displayed in the bottom status bar of Android Studio.
+6. Be sure to let the `Gradle Syc` process complete before moving on. When the process is complete, a message will display saying `Gradle build finished in X seconds`.
 
 ## View the Andriod-RadioPlayer project files
 To view the source files of the demo project, click on the `Project View` from the left side menu (or use CMD+1 shortcut).
 
 ## Run the Android-RadioPlayer project
-To run the project, you must have a virtual device or USB device setup with in Android Studio. To learn more about creating and managing virtual devices, please read the [ADV Developer guide](https://developer.android.com/studio/run/managing-avds.html).
+To run the project, you must have a virtual device or USB device setup with-in Android Studio. To learn more about creating and managing virtual devices, please read the [ADV Developer guide](https://developer.android.com/studio/run/managing-avds.html).
 
 ### Quick virtual device setup.
 If you do not have a virtual device setup, you can use the following steps to use a pre-provisioned device.
 
-1. Select **Tools > Android > AVD Manager**
+1. From with-in Android Studio, select **Tools > Android > AVD Manager**
 2. Click on **Create Virtual Device**
 3. Ensure that **Phone** is selected under the category menu to the left.
 4. Select an existing phone from the menu on the right (for example: Nexus 6) and click Next.
-5. On the next screen, **Select a system image**, select the latest Andriod release from the **Recommended** tab and click Next. **NOTE**: You may be prompted to download the image if you haven't already. Follow the download instructions and you will be returned to the system image screen.
-6. On the **Verify Configuration** screen, you can customize any options you wish. It is fine for this project preview to leave the default options in-place and click Next.
+5. On the next screen, **Select a system image**, select the latest Android release from the **Recommended** tab and click Next. **NOTE**: You may be prompted to download the image if you haven't already. Follow the download instructions and you will be returned to the system image screen.
+6. On the **Verify Configuration** screen, you can customize any options you wish. It is fine to leave the default options in-place and click Next.
 7. You should now see your new device listed in the Virtual Device Manager. Close the Device manager.
 
 ### Running the project
-You should setup a virtual or physical device detailed in the steps above. After setting up your device, you can run the Andriod-RadioPlayer demo on your device.
+You should setup a virtual or physical device detailed in the steps above. After setting up your device, you can run the Andriod-RadioPlayer `radioplayer` demo on your device.
 
-1. Select **Run > Run 'radioplayer'**
-2. Select your desired virual or physical device and click OK.
+1. From with-in Android Studio, select **Run > Run 'radioplayer'**
+2. Select your desired virtual or physical device and click OK.
+3. If you are using the emulator, it will take a few seconds for the device to launch and the application to build.
 
 # Screenshots
 
