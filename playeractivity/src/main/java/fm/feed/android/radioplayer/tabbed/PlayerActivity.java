@@ -25,6 +25,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
 
 import fm.feed.android.playersdk.Player;
 import fm.feed.android.playersdk.PlayerAvailabilityListener;
@@ -51,6 +52,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
     private ViewPager mViewPager;
     private TabLayout mTabs;
+    private Station[] mVisibleStations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,15 +100,15 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         mPlayer.setNotificationStyle(ni);
 
         // pick out stations to display
-        Station[] visibleStations = collectStations();
-        int selectedTabIndex = selectDefaultStation(visibleStations);
+        mVisibleStations = collectStations();
+        int selectedTabIndex = selectDefaultStation(mVisibleStations);
 
         mViewPager = (ViewPager) findViewById(R.id.playerContainer);
-        mViewPager.setAdapter(new PlayerFragmentStatePagerAdapter(getSupportFragmentManager(), visibleStations, this));
+        mViewPager.setAdapter(new PlayerFragmentStatePagerAdapter(getSupportFragmentManager(), mVisibleStations, this));
 
         mTabs = (TabLayout) findViewById(R.id.radioTabs);
-        if (visibleStations.length > 1) {
-            for (Station station : visibleStations) {
+        if (mVisibleStations.length > 1) {
+            for (Station station : mVisibleStations) {
                 mTabs.addTab(mTabs.newTab().setText(station.getName()));
             }
 
@@ -127,7 +129,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         if (mPlayer.getState() == PlayerState.READY) {
             // start pre-loading the first song in this station if we
             // just started the player up
-            mPlayer.setStation(visibleStations[selectedTabIndex].getName());
+            mPlayer.setStation(mVisibleStations[selectedTabIndex].getName());
             mPlayer.tune();
         }
 
@@ -267,6 +269,8 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     protected void onResume() {
         super.onResume();
 
+        Log.d(TAG, "fragment for station - activity resuming");
+
         // update the station selection buttons based on the current station
         mPlayer.onPlayerAvailability(new PlayerAvailabilityListener() {
             @Override
@@ -303,6 +307,24 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         PendingIntent pi = PendingIntent.getActivity(this, 0, ai, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mPlayer.setPendingIntent(pi);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+
+        if (intent.hasExtra(EXTRA_DEFAULT_STATION)) {
+            String name = intent.getStringExtra(EXTRA_DEFAULT_STATION);
+
+            // find the index of this station and focus on it
+            for (int i = 0; i < mVisibleStations.length; i++) {
+                Station station = mVisibleStations[i];
+
+                if (station.getName().equals(name)) {
+                    mViewPager.setCurrentItem(i);
+                }
+            }
+        }
     }
 
     /**

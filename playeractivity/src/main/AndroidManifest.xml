@@ -7,6 +7,7 @@
         <activity
             android:name=".PlayerActivity"
             android:label="Radio"
+            android:launchMode="singleTop"
             >
             <!-- android:parentActivityName=".MainActivity" -->
 
