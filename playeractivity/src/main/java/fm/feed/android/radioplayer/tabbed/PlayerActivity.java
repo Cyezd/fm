@@ -19,13 +19,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
 
 import fm.feed.android.playersdk.Player;
 import fm.feed.android.playersdk.PlayerAvailabilityListener;
@@ -52,7 +52,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
     private ViewPager mViewPager;
     private TabLayout mTabs;
-    private Station[] mVisibleStations;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,15 +99,15 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         mPlayer.setNotificationStyle(ni);
 
         // pick out stations to display
-        mVisibleStations = collectStations();
-        int selectedTabIndex = selectDefaultStation(mVisibleStations);
+        Station[] visibleStations = collectStations();
+        int selectedTabIndex = selectDefaultStation(visibleStations);
 
         mViewPager = (ViewPager) findViewById(R.id.playerContainer);
-        mViewPager.setAdapter(new PlayerFragmentStatePagerAdapter(getSupportFragmentManager(), mVisibleStations, this));
+        mViewPager.setAdapter(new PlayerFragmentStatePagerAdapter(getSupportFragmentManager(), visibleStations, this));
 
         mTabs = (TabLayout) findViewById(R.id.radioTabs);
-        if (mVisibleStations.length > 1) {
-            for (Station station : mVisibleStations) {
+        if (visibleStations.length > 1) {
+            for (Station station : visibleStations) {
                 mTabs.addTab(mTabs.newTab().setText(station.getName()));
             }
 
@@ -129,10 +128,9 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         if (mPlayer.getState() == PlayerState.READY) {
             // start pre-loading the first song in this station if we
             // just started the player up
-            mPlayer.setStation(mVisibleStations[selectedTabIndex].getName());
+            mPlayer.setStation(visibleStations[selectedTabIndex].getName());
             mPlayer.tune();
         }
-
     }
 
     @Nullable
@@ -215,9 +213,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
             for (Station station : mPlayer.getStationList()) {
                 Object hidden = station.getOption("hidden");
 
-                Log.i(TAG, "debugging station " + station.getName() + ", " + station.getOption("mobile_app_backgrounds"));
-
-
                 if ((hidden == null) ||
                         ((hidden instanceof Boolean) && (!(Boolean) hidden)) ||
                         unhide.contains(station.getName())) {
@@ -269,8 +264,6 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
     protected void onResume() {
         super.onResume();
 
-        Log.d(TAG, "fragment for station - activity resuming");
-
         // update the station selection buttons based on the current station
         mPlayer.onPlayerAvailability(new PlayerAvailabilityListener() {
             @Override
@@ -299,32 +292,12 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
     @Override
     public void onStationStartedPlayback(Station station) {
-        Log.d(TAG, "updating notification_small intent to point to " + station.getName());
-
         Intent ai = new Intent(getIntent());
         ai.putExtra(EXTRA_DEFAULT_STATION, station.getName());
 
         PendingIntent pi = PendingIntent.getActivity(this, 0, ai, PendingIntent.FLAG_UPDATE_CURRENT);
 
         mPlayer.setPendingIntent(pi);
-    }
-
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
-
-        if (intent.hasExtra(EXTRA_DEFAULT_STATION)) {
-            String name = intent.getStringExtra(EXTRA_DEFAULT_STATION);
-
-            // find the index of this station and focus on it
-            for (int i = 0; i < mVisibleStations.length; i++) {
-                Station station = mVisibleStations[i];
-
-                if (station.getName().equals(name)) {
-                    mViewPager.setCurrentItem(i);
-                }
-            }
-        }
     }
 
     /**
