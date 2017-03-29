@@ -41,6 +41,22 @@
             android:id="@+id/openPlayerButton"
             />
 
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="open with hidden station"
+            android:layout_below="@id/helloText"
+            android:id="@+id/openHiddenButton"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="open just hidden station"
+            android:layout_below="@id/openHiddenButton"
+            android:id="@+id/openJustHiddenButton"
+            />
+
     </LinearLayout>
 
 

@@ -13,12 +13,7 @@ public class Application extends android.app.Application {
         super.onCreate();
 
         // initialize player
-
-        // LA Marathon credentials
-        Player.setTokens(this, "4f915704f1adc23510d224726ac65e3a4b7778f4", "8806e61a8afd5d22c64c3f2d7491727ca13f8583");
-
-        // demo credentials
-        //Player.setTokens(this, "demo", "demo");
+        Player.setTokens(this, "sdkdemo", "sdkdemo");
     }
 
 }

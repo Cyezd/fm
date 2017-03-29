@@ -1,6 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <item name="marathonPrimary" type="color">#FF002E5E</item>
-    <item name="marathonPrimaryDark" type="color">#FF000000</item>
-    <item name="marathonAccent" type="color">#ffC4D600</item>
-</resources>

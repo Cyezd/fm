@@ -2,14 +2,14 @@
 
 <item android:id="@android:id/background">
     <shape>
-        <solid android:color="@color/marathonPrimaryDark" />
+        <solid android:color="#ffcccccc" />
     </shape>
 </item>
 
 <item android:id="@android:id/progress">
 <clip>
     <shape>
-        <solid android:color="@color/marathonAccent" />
+        <solid android:color="#ff000000" />
     </shape>
 </clip>
 </item>
