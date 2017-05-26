@@ -1,5 +1,5 @@
 # Android-RadioPlayer
-This is a demo Android app that makes use of the Feed Media SDK
+This is an offical Feed.fm Android app that makes use of the Feed Media SDK
 to power a Pandora-style Internet-radio app. The app has a sample
 custom notification layout and shows how you can use station
 metadata to hide stations and assign images and
@@ -14,8 +14,8 @@ default image included with this code.
 
 Check out our [iOS version](https://github.com/feedfm/iOS-RadioPlayer) as well!
 
-# Android-RadioPlayer Demo Setup from scratch
-To setup the **Andriod-RadioPlayer** demo (from with in the project, `radioplayer`) from scratch using Android Studio, follow the steps below. The demo is mainly to help familiarize new developers with the player and allow testing and interaction with the base UI components. To view instructions on integration into an existing application, scroll down to **Integrate the Android-RadioPlayer into an existing application**.
+# Android-RadioPlayer Setup from scratch
+To setup the **Andriod-RadioPlayer** (from with in the project, `radioplayer`) from scratch using Android Studio, follow the steps below. This app serves as a stock music player you can immediately integrate into your own app, or it can be used as a starting point to create a custom music player of your own. To view instructions on integration into an existing application, scroll down to **Integrate the Android-RadioPlayer into an existing application**.
 
 ## Download Android Studio
 If you have not already, [download Andriod Studio](https://developer.android.com/studio/index.html) and followup the setup instructions [here](https://developer.android.com/studio/install.html).
@@ -28,7 +28,7 @@ git clone https://github.com/feedfm/Android-RadioPlayer.git
 Or you may download the latest release here: [https://github.com/feedfm/Android-RadioPlayer/archive/master.zip](https://github.com/feedfm/Android-RadioPlayer/archive/master.zip)
 
 ## Import the Andriod-RadioPlayer project into Android Studio
-In order to interact with the Andriod-RadioPlayer `radioplayer` demo in Android Studio, you must import the project.
+In order to interact with the Andriod-RadioPlayer `radioplayer` in Android Studio, you must import the project.
 
 ### To import the project
 
@@ -40,7 +40,7 @@ In order to interact with the Andriod-RadioPlayer `radioplayer` demo in Android 
 6. Be sure to let the `Gradle Syc` process complete before moving on. When the process is complete, a message will display saying `Gradle build finished in X seconds`.
 
 ## View the Andriod-RadioPlayer project files
-To view the source files of the demo project, click on the `Project View` from the left side menu (or use CMD+1 shortcut).
+To view the source files of the project, click on the `Project View` from the left side menu (or use CMD+1 shortcut).
 
 ## Run the Android-RadioPlayer project
 To run the project, you must have a virtual device or USB device setup with-in Android Studio. To learn more about creating and managing virtual devices, please read the [ADV Developer guide](https://developer.android.com/studio/run/managing-avds.html).
@@ -57,7 +57,7 @@ If you do not have a virtual device setup, you can use the following steps to us
 7. You should now see your new device listed in the Virtual Device Manager. Close the Device manager.
 
 ### Running the project
-You should setup a virtual or physical device detailed in the steps above. After setting up your device, you can run the Andriod-RadioPlayer `radioplayer` demo on your device.
+You should setup a virtual or physical device detailed in the steps above. After setting up your device, you can run the Andriod-RadioPlayer `radioplayer` on your device.
 
 1. From with-in Android Studio, select **Run > Run 'radioplayer'**
 2. Select your desired virtual or physical device and click OK.
