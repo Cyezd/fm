@@ -212,17 +212,19 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
                 unhide.addAll(ai.getStringArrayListExtra(EXTRA_UNHIDE_STATION_LIST));
             }
 
-            for (Station station : mPlayer.getStationList()) {
-                Object hidden = station.getOption("hidden");
+            if (mPlayer.getStationList() != null) {
+                for (Station station : mPlayer.getStationList()) {
+                    Object hidden = station.getOption("hidden");
 
-                Log.i(TAG, "debugging station " + station.getName() + ", " + station.getOption("mobile_app_backgrounds"));
+                    Log.i(TAG, "debugging station " + station.getName() + ", " + station.getOption("mobile_app_backgrounds"));
 
 
-                if ((hidden == null) ||
-                        ((hidden instanceof Boolean) && (!(Boolean) hidden)) ||
-                        unhide.contains(station.getName())) {
+                    if ((hidden == null) ||
+                            ((hidden instanceof Boolean) && (!(Boolean) hidden)) ||
+                            unhide.contains(station.getName())) {
 
-                    visibleStations.add(station);
+                        visibleStations.add(station);
+                    }
                 }
             }
         }
