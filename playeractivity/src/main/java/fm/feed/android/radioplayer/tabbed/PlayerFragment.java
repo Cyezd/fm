@@ -84,6 +84,7 @@ public class PlayerFragment extends Fragment {
     private View mTuneInView;
     private View mTuningView;
     private View mPlayerControlsView;
+    private View mProgressBar;
 
     private ImageView mBackgroundImageView;
 
@@ -144,6 +145,7 @@ public class PlayerFragment extends Fragment {
         mTuningView = rootView.findViewById(R.id.tuningView);
         mPlayerControlsView = rootView.findViewById(R.id.playerControlsView);
         mBackgroundImageView = (ImageView) rootView.findViewById(R.id.backgroundImageView);
+        mProgressBar = rootView.findViewById(R.id.progressBar);
 
         // station description
         TextView description = (TextView) rootView.findViewById(R.id.description);
@@ -154,11 +156,7 @@ public class PlayerFragment extends Fragment {
         description.setText((String) dt);
 
         // 'powered by feed.fm' link
-        Button poweredByText = (Button) rootView.findViewById(R.id.powered_by_playing);
-        poweredByText.setOnClickListener(onClickPoweredByText);
-        poweredByText = (Button) rootView.findViewById(R.id.powered_by_tuning);
-        poweredByText.setOnClickListener(onClickPoweredByText);
-        poweredByText = (Button) rootView.findViewById(R.id.powered_by_tune_in);
+        Button poweredByText = (Button) rootView.findViewById(R.id.powered_by);
         poweredByText.setOnClickListener(onClickPoweredByText);
 
         // clicking on this button will now start playback
@@ -310,6 +308,7 @@ public class PlayerFragment extends Fragment {
             mTuneInView.setVisibility(View.VISIBLE);
             mTuningView.setVisibility(View.INVISIBLE);
             mPlayerControlsView.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
 
         } else if (!station.getId().equals(mStation.getId())) {
             Log.i(TAG, "showing tune in text, since station does not match");
@@ -318,6 +317,7 @@ public class PlayerFragment extends Fragment {
             mTuneInView.setVisibility(View.VISIBLE);
             mTuningView.setVisibility(View.INVISIBLE);
             mPlayerControlsView.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
 
         } else if (state == PlayerState.TUNING) {
             Log.i(TAG,"showing 'tuning...' text since we're tuning");
@@ -326,6 +326,7 @@ public class PlayerFragment extends Fragment {
             mTuneInView.setVisibility(View.INVISIBLE);
             mTuningView.setVisibility(View.VISIBLE);
             mPlayerControlsView.setVisibility(View.INVISIBLE);
+            mProgressBar.setVisibility(View.INVISIBLE);
 
         } else {
             Log.i(TAG, "showing controls");
@@ -334,6 +335,7 @@ public class PlayerFragment extends Fragment {
             mTuneInView.setVisibility(View.INVISIBLE);
             mTuningView.setVisibility(View.INVISIBLE);
             mPlayerControlsView.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.VISIBLE);
 
             // update the lock screen background
             assignLockScreen();

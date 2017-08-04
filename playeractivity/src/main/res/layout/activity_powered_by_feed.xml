@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
         android:layout_width="match_parent"
@@ -15,22 +14,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-
-        <ImageButton
-            android:id="@+id/poweredByFeedCloseButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="16dp"
-            android:paddingBottom="16dp"
-            android:paddingRight="16dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/feedfm_ic_close_white_24dp"
-            android:background="?android:selectableItemBackground"
-            android:layout_gravity="right"
-            android:contentDescription="@string/close_button"
-
-            />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -56,5 +39,12 @@
             />
 
     </RelativeLayout>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        style="@style/ThemeOverlay.AppCompat.Dark"
+        />
 
 </FrameLayout>

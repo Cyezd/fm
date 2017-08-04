@@ -2,15 +2,15 @@
 
 <item android:id="@android:id/background">
     <shape>
-        <solid android:color="#ffcccccc" />
+        <solid android:color="@android:color/transparent" />
     </shape>
 </item>
 
 <item android:id="@android:id/progress">
-<clip>
-    <shape>
-        <solid android:color="#ff000000" />
-    </shape>
-</clip>
+    <clip>
+        <shape>
+            <solid android:color="?attr/colorAccent" />
+        </shape>
+    </clip>
 </item>
 </layer-list>

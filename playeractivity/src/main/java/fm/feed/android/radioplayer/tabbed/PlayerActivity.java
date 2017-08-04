@@ -335,21 +335,7 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
 
     @Override
     public void onClickPoweredBy() {
-        FragmentManager fm = getSupportFragmentManager();
-
-        String tag = PoweredByFeedFragment.class.getSimpleName();
-
-        PoweredByFeedFragment fragment = (PoweredByFeedFragment) fm.findFragmentByTag(tag);
-
-        if (fragment == null) {
-            fragment = new PoweredByFeedFragment();
-        }
-
-        fm
-                .beginTransaction()
-                .replace(R.id.feedPlayer, fragment, PoweredByFeedFragment.class.getSimpleName())
-                .addToBackStack(PoweredByFeedFragment.class.getSimpleName())
-                .commit();
-
+        Intent ai = new Intent(this, PoweredByFeedActivity.class);
+        startActivity(ai);
     }
 }
