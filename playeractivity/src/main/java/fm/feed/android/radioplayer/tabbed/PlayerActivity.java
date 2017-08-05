@@ -8,11 +8,14 @@ package fm.feed.android.radioplayer.tabbed;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -77,12 +80,12 @@ public class PlayerActivity extends AppCompatActivity implements PlayerFragment.
         // make sure we're using our sexy icons
         NotificationStyle ni = new NotificationStyle()
             .setSmallIcon(R.drawable.ic_headset_white_24dp)
-            .setPlayIcon(R.drawable.feedfm_ic_play_white_24dp)
-            .setPauseIcon(R.drawable.feedfm_ic_pause_white_24dp)
-            .setSkipIcon(R.drawable.feedfm_ic_skip_white_24dp)
+            .setPlayIcon(R.drawable.feedfm_ic_play_24dp)
+            .setPauseIcon(R.drawable.feedfm_ic_pause_24dp)
+            .setSkipIcon(R.drawable.feedfm_ic_skip_24dp)
             .setColor(Color.BLACK)
-            .setThumbsUpIcons(R.drawable.feedfm_ic_thumbsup_hollow_white_24dp, R.drawable.feedfm_ic_thumbsup_white_24dp)
-            .setThumbsDownIcons(R.drawable.feedfm_ic_thumbsdown_hollow_white_24dp, R.drawable.feedfm_ic_thumbsdown_white_24dp)
+            .setThumbsUpIcons(R.drawable.feedfm_ic_thumbsup_hollow_24dp, R.drawable.feedfm_ic_thumbsup_24dp)
+            .setThumbsDownIcons(R.drawable.feedfm_ic_thumbsdown_hollow_24dp, R.drawable.feedfm_ic_thumbsdown_24dp)
 
             // .. and our custom notification layouts
             .setBigContentView(getPackageName(), R.layout.notification_big)

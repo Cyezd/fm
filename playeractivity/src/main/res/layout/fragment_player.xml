@@ -70,7 +70,7 @@
                     android:id="@+id/startButton"
                     android:layout_centerHorizontal="true"
                     android:layout_below="@id/description"
-                    android:src="@drawable/feedfm_ic_play_black_36dp"
+                    android:src="@drawable/feedfm_ic_play_36dp"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
                     android:scaleType="center"
@@ -185,7 +185,7 @@
                         android:layout_width="36dp"
                         android:layout_marginRight="27dp"
                         android:layout_height="36dp"
-                        android:src="@drawable/feedfm_btn_thumbsdown_black_36dp"
+                        android:src="@drawable/feedfm_btn_thumbsdown_36dp"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
                         />
@@ -202,7 +202,7 @@
                         android:layout_marginLeft="21dp"
                         android:layout_marginRight="22dp"
                         android:layout_height="36dp"
-                        android:src="@drawable/feedfm_btn_thumbsup_black_36dp"
+                        android:src="@drawable/feedfm_btn_thumbsup_36dp"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
                         />
@@ -219,7 +219,7 @@
                         android:layout_marginLeft="24dp"
                         android:layout_marginRight="24dp"
                         android:layout_height="36dp"
-                        android:src="@drawable/feedfm_btn_play_pause_black_36dp"
+                        android:src="@drawable/feedfm_btn_play_pause_36dp"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
                         />
@@ -235,7 +235,7 @@
                         android:layout_width="36dp"
                         android:layout_marginLeft="16dp"
                         android:layout_height="36dp"
-                        android:src="@drawable/feedfm_btn_skip_black_36dp"
+                        android:src="@drawable/feedfm_btn_skip_36dp"
                         android:scaleType="fitCenter"
                         android:background="@android:color/transparent"
                         />

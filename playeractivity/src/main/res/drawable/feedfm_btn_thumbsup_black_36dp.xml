@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:state_enabled="false"                       android:drawable="@drawable/feedfm_ic_thumbsup_black_disabled_36dp"/>
-    <item android:state_enabled="true" app:state_liked="true" android:drawable="@drawable/feedfm_ic_thumbsup_black_36dp"/>
-    <item android:state_enabled="true"                        android:drawable="@drawable/feedfm_ic_thumbsup_hollow_black_36dp"/>
-</selector>

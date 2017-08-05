@@ -3,9 +3,9 @@
 
     <!-- Player Activity -->
     <style name="FeedPlayerTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#006586</item>
-        <item name="colorPrimaryDark">#000000</item>
-        <item name="colorAccent">#ffa8e000</item>
+        <item name="colorPrimary">@color/feedPrimary</item>
+        <item name="colorPrimaryDark">@color/feedPrimaryDark</item>
+        <item name="colorAccent">@color/feedAccent</item>
         <item name="android:textColor">@color/feedText</item>
     </style>
 
